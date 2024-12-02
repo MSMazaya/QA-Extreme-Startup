@@ -8,6 +8,14 @@ public class QueryProcessor {
 
     public String process(String query) {
 
+        if (query.contains("minus")) {
+            // query = What is 16 minus 79?
+            String[] words = query.split(" ");
+            int num1 = Integer.parseInt(words[2]);
+            int num2 = Integer.parseInt(words[4].substring(0, words[4].length() - 1));
+            return String.valueOf(num1 - num2);
+        }
+
         if (query.contains("plus")) {
             // query = What is 16 plus 79?
             String[] words = query.split(" ");
