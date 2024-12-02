@@ -69,7 +69,50 @@ public class QueryProcessor {
             Integer result = integers.get(1) * integers.get(0);
             return result.toString();
         }
+
+        if (query.contains("prime")) {
+            List<Integer> integers = new ArrayList<>();
+            StringBuilder number = new StringBuilder();
+
+            for (char c : query.toCharArray()) {
+                if (Character.isDigit(c)) {
+                    number.append(c);
+                } else if (number.length() > 0) {
+                    integers.add(Integer.parseInt(number.toString()));
+                    number.setLength(0);
+                }
+            }
+
+            if (number.length() > 0) {
+                integers.add(Integer.parseInt(number.toString()));
+            }
+
+
+            Integer result = 0;
+            for (Integer i : integers) {
+                if (isPrime(i)) {
+                    result = i;
+                }
+            }
+
+            return result.toString();
+        }
+
         return "";
     }
 
+
+    private static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

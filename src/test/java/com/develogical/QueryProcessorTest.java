@@ -1,11 +1,9 @@
 package com.develogical;
 
-import org.junit.Test;
-import org.junit.Ignore;
-
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+
+import org.junit.Test;
 
 public class QueryProcessorTest {
 
@@ -39,5 +37,10 @@ public class QueryProcessorTest {
     @Test
     public void canDoMult() throws Exception {
         assertThat(queryProcessor.process("What is 44 multiplied by 42?"), containsString("1848"));
+    }
+
+    @Test
+    public void canDoPrime() throws Exception {
+        assertThat("Which of the following numbers are primes: 99, 13, 3, 77, 71?", containsString("3"));
     }
 }
