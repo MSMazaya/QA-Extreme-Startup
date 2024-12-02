@@ -23,7 +23,7 @@ public class QueryProcessor {
         }
 
         if (query.contains("your name")) {
-            return "STM32";
+            return "STM33";
 
         }
 
