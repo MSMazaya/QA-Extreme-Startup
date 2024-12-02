@@ -28,11 +28,16 @@ public class QueryProcessorTest {
 
     @Test
     public void canDoPlus() throws Exception {
-        assertThat("What is 16 plus 79?", containsString("95"));
+        assertThat(queryProcessor.process("What is 16 plus 79?"), containsString("95"));
     }
 
     @Test
     public void canDoMax() throws Exception {
-        assertThat("Which of the following numbers is the largest: 38, 2, 11?", containsString("38"));
+        assertThat(queryProcessor.process("Which of the following numbers is the largest: 38, 2, 11?"), containsString("38"));
+    }
+
+    @Test
+    public void canDoMult() throws Exception {
+        assertThat(queryProcessor.process("What is 44 multiplied by 42?"), containsString("1848"));
     }
 }
