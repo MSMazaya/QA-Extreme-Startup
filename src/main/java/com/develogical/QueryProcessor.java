@@ -8,6 +8,14 @@ public class QueryProcessor {
 
     public String process(String query) {
 
+        if (query.contains("power")) {
+            // query = What is 83 to the power of 59?
+            String[] words = query.split(" ");
+            int num1 = Integer.parseInt(words[2]);
+            int num2 = Integer.parseInt(words[7].substring(0, words[7].length() - 1));
+            return String.valueOf((int) Math.pow(num1, num2));
+        }
+
         if (query.contains("minus")) {
             // query = What is 16 minus 79?
             String[] words = query.split(" ");
