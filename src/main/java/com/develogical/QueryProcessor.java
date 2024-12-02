@@ -4,6 +4,17 @@ public class QueryProcessor {
 
     public String process(String query) {
 
+        if (query.contains("plus")) {
+            // query = What is 16 plus 79
+            int digit1 = query.charAt(8) - '0';
+            int digit2 = query.charAt(9) - '0';
+            int num1 = digit1 * 10 + digit2;
+            int digit3 = query.charAt(query.length() - 2) - '0';
+            int digit4 = query.charAt(query.length() - 1) - '0';
+            int num2 = digit3 * 10 + digit4;
+            return String.valueOf(num1 + num2);
+        }
+
         if (query.toLowerCase().contains("shakespeare")) {
             return "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
                     "English poet, playwright, and actor, widely regarded as the greatest " +
