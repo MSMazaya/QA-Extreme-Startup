@@ -23,6 +23,22 @@ public class QueryProcessor {
 
         }
 
+        if (query.contains("multiplied")) {
+            String newQ = query.replace("?", "");
+            String tok[] = newQ.split(" ");
+            int mult = 1;
+
+            for(String t: tok) {
+                try {
+                    mult *= Integer.parseInt(t);
+                } catch(Exception e) {
+
+                }
+            }
+
+            return "" + mult;
+        }
+
         return "";
     }
 
