@@ -1,5 +1,9 @@
 package com.develogical;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class QueryProcessor {
 
     public String process(String query) {
@@ -19,26 +23,44 @@ public class QueryProcessor {
         }
 
         if (query.contains("your name")) {
-            return "STM33";
+            return "STM32";
 
+        }
+
+        if (query.contains("largest")) {
+            String numberQuery = query.substring("Which of the following numbers is the largest: ".length(), query.length()-1);
+            List<Integer> numbers = Arrays.asList(numberQuery.split(",")).stream().map(
+                s -> Integer.parseInt(s.strip())
+            ).toList();
+            Integer result = -1;
+            for (Integer i : numbers) {
+                if (result < i) {
+                    result = i;
+                }
+            }
+            return result.toString();
         }
 
         if (query.contains("multiplied")) {
-            String newQ = query.replace("?", "");
-            String tok[] = newQ.split(" ");
-            int mult = 1;
+            List<Integer> integers = new ArrayList<>();
+            StringBuilder number = new StringBuilder();
 
-            for(String t: tok) {
-                try {
-                    mult *= Integer.parseInt(t);
-                } catch(Exception e) {
-
+            for (char c : query.toCharArray()) {
+                if (Character.isDigit(c)) {
+                    number.append(c);
+                } else if (number.length() > 0) {
+                    integers.add(Integer.parseInt(number.toString()));
+                    number.setLength(0);
                 }
             }
 
-            return "" + mult;
-        }
+            if (number.length() > 0) {
+                integers.add(Integer.parseInt(number.toString()));
+            }
 
+            Integer result = integers.get(1) * integers.get(0);
+            return result.toString();
+        }
         return "";
     }
 
